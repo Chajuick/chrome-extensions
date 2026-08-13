@@ -1,0 +1,27 @@
+# 개인정보 — 절대 커밋 금지
+*.local.js
+*.local.json
+secrets.js
+secrets.json
+.env
+.env.*
+
+# 배포용 압축본
+dist/
+build/
+*.zip
+*.crx
+*.pem
+
+# 의존성 (나중에 쓰게 될 경우 대비)
+node_modules/
+
+# 에디터
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

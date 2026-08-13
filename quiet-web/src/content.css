@@ -1,0 +1,45 @@
+/* 조용한 웹 — 페이지 위에 얹는 UI
+   사이트 CSS 에 영향받지 않도록 값을 전부 명시하고 !important 를 붙인다. */
+
+.quietweb-highlight {
+  position: absolute !important;
+  z-index: 2147483646 !important;
+  pointer-events: none !important;
+  border: 2px solid #4f46e5 !important;
+  border-radius: 6px !important;
+  background: rgba(79, 70, 229, 0.18) !important;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.06s ease-out !important;
+}
+
+.quietweb-hint,
+.quietweb-toast {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483647 !important;
+  padding: 12px 20px !important;
+  border-radius: 999px !important;
+  background: #1e1b4b !important;
+  color: #ffffff !important;
+  font: 500 15px/1.4 -apple-system, "Segoe UI", "Malgun Gothic", sans-serif !important;
+  letter-spacing: -0.2px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+}
+
+.quietweb-hint {
+  top: 24px !important;
+}
+
+.quietweb-toast {
+  bottom: 32px !important;
+  background: #4f46e5 !important;
+  animation: quietweb-rise 0.2s ease-out !important;
+}
+
+@keyframes quietweb-rise {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}

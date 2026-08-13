@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <h1>조용한 웹</h1>
+      <button id="power" class="power" type="button">켜짐</button>
+    </header>
+
+    <p id="summary" class="summary">확인하는 중…</p>
+
+    <section class="site">
+      <span id="host" class="host"></span>
+      <button id="siteToggle" class="ghost" type="button">이 사이트에서 끄기</button>
+    </section>
+
+    <section class="actions">
+      <button id="pick" class="primary" type="button">직접 지우기</button>
+      <button id="restore" class="ghost" type="button">되돌리기</button>
+    </section>
+
+    <footer id="total" class="total"></footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
