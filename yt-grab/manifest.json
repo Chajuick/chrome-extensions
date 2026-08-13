@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "내 영상 받기",
+  "version": "0.1.0",
+  "description": "보고 있는 유튜브 영상의 오디오(m4a/wav)와 영상 파일을 내려받습니다.",
+  "minimum_chrome_version": "111",
+  "permissions": ["downloads", "offscreen"],
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://*.googlevideo.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/page.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/bridge.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "내 영상 받기",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
