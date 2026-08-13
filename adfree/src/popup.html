@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <h1>광고 없이</h1>
+      <button id="power" class="power" type="button">켜짐</button>
+    </header>
+
+    <p id="warn" class="warn" hidden></p>
+
+    <p class="tab-count">
+      이 페이지에서 <strong id="tabCount">0</strong>개 정리함
+    </p>
+
+    <section class="site">
+      <span id="host" class="host"></span>
+      <button id="siteToggle" class="ghost" type="button">이 사이트에서 끄기</button>
+    </section>
+
+    <dl class="totals">
+      <div><dt>광고 자리</dt><dd id="tSlot">0</dd></div>
+      <div><dt>영상 광고</dt><dd id="tVideo">0</dd></div>
+      <div><dt>겹침 배너</dt><dd id="tOverlay">0</dd></div>
+    </dl>
+
+    <p class="hint">
+      네트워크에서 막은 요청 수는 크롬이 배포판에 알려주지 않아 세지 않습니다.
+      위 숫자는 실제로 확인한 것만입니다.
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

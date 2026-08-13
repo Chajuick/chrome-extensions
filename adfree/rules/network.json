@@ -1,0 +1,94 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "domainType": "thirdParty",
+      "resourceTypes": [
+        "script",
+        "xmlhttprequest",
+        "sub_frame",
+        "image",
+        "media",
+        "ping",
+        "object",
+        "websocket"
+      ],
+      "requestDomains": [
+        "doubleclick.net",
+        "googlesyndication.com",
+        "googleadservices.com",
+        "adservice.google.com",
+        "2mdn.net",
+        "adnxs.com",
+        "amazon-adsystem.com",
+        "criteo.com",
+        "criteo.net",
+        "taboola.com",
+        "outbrain.com",
+        "rubiconproject.com",
+        "pubmatic.com",
+        "openx.net",
+        "casalemedia.com",
+        "smartadserver.com",
+        "adform.net",
+        "teads.tv",
+        "media.net",
+        "moatads.com",
+        "adroll.com",
+        "sharethrough.com",
+        "indexww.com",
+        "33across.com",
+        "yieldmo.com",
+        "serving-sys.com",
+        "flashtalking.com",
+        "contextweb.com",
+        "gumgum.com",
+        "sovrn.com",
+        "triplelift.com",
+        "zemanta.com",
+        "bluekai.com",
+        "everesttech.net",
+        "scorecardresearch.com",
+        "quantserve.com",
+        "widerplanet.com",
+        "mobon.net",
+        "cauly.net",
+        "dable.io",
+        "adpick.co.kr",
+        "tenping.kr",
+        "realclick.co.kr",
+        "adop.cc",
+        "exelbid.com"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "resourceTypes": ["script", "xmlhttprequest", "sub_frame", "image", "ping"],
+      "requestDomains": ["display.ad.daum.net", "veta.naver.com"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 100,
+    "action": { "type": "allow" },
+    "condition": {
+      "initiatorDomains": ["youtube.com", "youtube-nocookie.com", "youtu.be"],
+      "resourceTypes": [
+        "script",
+        "xmlhttprequest",
+        "sub_frame",
+        "image",
+        "media",
+        "ping",
+        "object",
+        "websocket"
+      ]
+    }
+  }
+]

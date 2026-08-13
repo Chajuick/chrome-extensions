@@ -1,0 +1,29 @@
+/* 유튜브 화면의 광고 자리를 숨긴다.
+ *
+ * 여기서는 네트워크 요청을 막지 않고 '보이지 않게' 만 한다.
+ * 요청이 실패하면 유튜브의 광고차단 감지에 걸리기 때문이다.
+ * 없는 요소를 숨기는 건 아무 부작용이 없으므로, 이름이 바뀌어도 화면이 깨지지 않는다.
+ */
+
+ytd-ad-slot-renderer,
+ytd-in-feed-ad-layout-renderer,
+ytd-display-ad-renderer,
+ytd-promoted-sparkles-web-renderer,
+ytd-promoted-sparkles-text-search-renderer,
+ytd-promoted-video-renderer,
+ytd-companion-slot-renderer,
+ytd-action-companion-ad-renderer,
+ytd-banner-promo-renderer,
+ytd-banner-promo-renderer-background,
+ytd-statement-banner-renderer,
+ytd-brand-video-shelf-renderer,
+ytd-brand-video-singleton-renderer,
+ytd-video-masthead-ad-v3-renderer,
+ytd-primetime-promo-renderer,
+#masthead-ad,
+#player-ads,
+#panels-full-bleed-container ytd-ad-slot-renderer,
+.ytp-ad-overlay-slot,
+.ytp-ad-progress-list {
+  display: none !important;
+}
