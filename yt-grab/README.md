@@ -5,6 +5,47 @@
 
 확장 아이콘을 누르면 받을 수 있는 형식이 목록으로 나온다. 유튜브 페이지에는 버튼을 심지 않는다.
 
+---
+
+## ⚠️ 현재 대부분의 영상에서 동작하지 않는다
+
+2026년 8월 실제 확인 결과, 유튜브가 **SABR(Server-side Adaptive Bitrate)** 방식으로 넘어갔다.
+
+`Me at the zoo` (jNQXAC9IVRw) 에서 플레이어 응답을 확인한 값:
+
+```
+progressiveCount: 0        360p/720p 통합 파일 없음
+adaptiveCount:    14
+withUrl:          0        URL 을 가진 포맷 0개
+withCipher:       0        서명 암호화도 아님
+hasServerAbr:     true     serverAbrStreamingUrl 존재
+```
+
+포맷 객체의 키 목록에 **`url` 필드 자체가 없다.** 값이 비어 있는 게 아니라 스키마에서 사라졌다.
+
+```
+itag, mimeType, bitrate, width, height, initRange, indexRange,
+lastModified, contentLength, quality, fps, qualityLabel, ...
+```
+
+예전에는 포맷마다 파일 주소를 줬지만, 지금은 `serverAbrStreamingUrl` 엔드포인트 하나만 주고
+플레이어가 "몇 초부터 몇 초까지" 를 protobuf 로 인코딩해 POST 로 요청하는 구조다.
+**내려받을 파일 주소라는 게 존재하지 않는다.**
+
+이 확장은 "포맷 목록에서 url 을 읽어 `chrome.downloads` 에 넘긴다" 가 전제이므로, 그 전제가 무너졌다.
+
+### 고칠 계획은 없다
+
+고치려면 SABR 프로토콜(protobuf 요청 조립 + UMP 응답 파싱)과 출처 증명 토큰까지 구현해야 한다.
+유튜브가 접근을 통제하려고 만든 장치를 우회하는 작업이고, 프로토콜이 바뀔 때마다 깨진다.
+
+**본인이 올린 영상이라면 YouTube Studio → 콘텐츠 → 영상 메뉴(⋮) → 다운로드** 가 공식 기능으로 있다.
+이게 정상적인 경로다.
+
+아래 내용은 유튜브가 파일 주소를 주던 시절 기준으로 쓴 것이며, 기록용으로 남겨둔다.
+
+---
+
 ## 받을 수 있는 것
 
 | 항목 | 설명 |

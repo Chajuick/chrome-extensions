@@ -113,6 +113,23 @@ function render() {
     return;
   }
 
+  // 받을 수 있는 게 하나도 없는 경우. 대부분 SABR 때문이므로 이유를 정확히 알려준다.
+  if (!info.audio.length && !info.progressive.length && !info.videoOnly.length) {
+    const note = document.createElement('p');
+    note.className = 'note';
+    if (info.sabr) {
+      note.innerHTML =
+        '<b>이 확장으로는 받을 수 없는 영상입니다.</b><br><br>' +
+        '유튜브가 파일 주소를 주지 않고 스트리밍 엔드포인트로만 영상을 보내는 방식(SABR)으로 바뀌었습니다. ' +
+        '내려받을 파일 주소 자체가 존재하지 않습니다.<br><br>' +
+        '본인이 올린 영상이라면 <b>YouTube Studio → 콘텐츠 → 영상 메뉴(⋮) → 다운로드</b> 가 공식 기능으로 있습니다.';
+    } else {
+      note.textContent = '받을 수 있는 스트림이 없습니다.';
+    }
+    body.appendChild(note);
+    return;
+  }
+
   // --- 소리 ---
   const bestAudio = info.audio[0];
   if (bestAudio) {
@@ -158,17 +175,10 @@ function render() {
     body.appendChild(note);
   }
 
-  if (!bestAudio && !info.progressive.length && !info.videoOnly.length) {
-    const empty = document.createElement('p');
-    empty.className = 'empty';
-    empty.textContent = '받을 수 있는 스트림이 없습니다.';
-    body.appendChild(empty);
-  }
-
   if (info.locked > 0) {
     const note = document.createElement('p');
     note.className = 'note';
-    note.textContent = `이 영상은 ${info.locked}개 스트림이 잠겨 있어 목록에서 빠졌습니다.`;
+    note.textContent = `${info.locked}개 형식은 파일 주소가 없어 목록에서 빠졌습니다.`;
     body.appendChild(note);
   }
 }

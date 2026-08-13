@@ -79,6 +79,9 @@
 
     return {
       ok: true,
+      // SABR: 유튜브가 파일 주소 대신 스트리밍 엔드포인트 하나만 주는 방식.
+      // 이 값이 있고 url 을 가진 포맷이 하나도 없으면 이 확장으로는 받을 수 없다.
+      sabr: !!streaming.serverAbrStreamingUrl,
       videoId: details.videoId || '',
       title: details.title || '영상',
       author: details.author || '',
