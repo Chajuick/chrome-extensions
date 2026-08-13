@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <p id="tabTitle" class="tab-title">확인하는 중…</p>
+
+    <div id="timer" class="timer" hidden>
+      <span id="elapsed" class="elapsed">0:00</span>
+      <span id="size" class="size"></span>
+    </div>
+
+    <button id="toggle" class="toggle" type="button" disabled>준비 중…</button>
+
+    <p id="status" class="status" hidden></p>
+
+    <p class="hint">
+      재생 중인 소리를 그대로 받아 적습니다. 녹음하는 동안에도 소리는 계속 들립니다.
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
