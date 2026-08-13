@@ -11,8 +11,24 @@ const Shelf = (() => {
   const DEFAULTS = {
     items: {},              // { [videoId]: item }
     channelTags: {},        // { [channelName]: ["태그", ...] }  저장할 때 자동으로 붙는다
-    ui: { open: false, pinned: false, group: 'recent', width: 360 },
+    tagColors: {},          // { [태그]: "#hex" }  색인 탭 색
+    hiddenTabs: [],         // 탭으로 안 띄울 태그
+    ui: { open: false, pinned: false, group: 'recent', activeTag: '' },
   };
+
+  /** 색인 탭에 쓰는 색. 서로 잘 구분되고 흰 글자가 읽히는 명도로 골랐다. */
+  const PALETTE = [
+    '#7c3aed', '#2563eb', '#0891b2', '#059669',
+    '#ca8a04', '#ea580c', '#dc2626', '#db2777',
+  ];
+
+  /** 색을 안 정한 태그는 이름에서 항상 같은 색이 나오게 한다 (매번 바뀌면 헷갈린다) */
+  function colorFor(tag, tagColors) {
+    if (tagColors && tagColors[tag]) return tagColors[tag];
+    let hash = 0;
+    for (let i = 0; i < tag.length; i += 1) hash = (hash * 31 + tag.charCodeAt(i)) >>> 0;
+    return PALETTE[hash % PALETTE.length];
+  }
 
   /** 영상 하나의 모양 */
   function makeItem(video, tags) {
@@ -38,6 +54,8 @@ const Shelf = (() => {
     return {
       items: data.items || {},
       channelTags: data.channelTags || {},
+      tagColors: data.tagColors || {},
+      hiddenTabs: data.hiddenTabs || [],
       ui: { ...DEFAULTS.ui, ...(data.ui || {}) },
     };
   }
@@ -103,6 +121,20 @@ const Shelf = (() => {
 
   function setUi(patch) {
     return mutate((data) => { Object.assign(data.ui, patch); });
+  }
+
+  function setTagColor(tag, color) {
+    return mutate((data) => { data.tagColors[tag] = color; });
+  }
+
+  function toggleTab(tag) {
+    return mutate((data) => {
+      const set = new Set(data.hiddenTabs);
+      if (set.has(tag)) set.delete(tag);
+      else set.add(tag);
+      data.hiddenTabs = [...set];
+      return !set.has(tag);
+    });
   }
 
   /* ------------------------------------------------------------ 공유 */
@@ -199,12 +231,12 @@ const Shelf = (() => {
   }
 
   return {
-    KEY,
+    KEY, PALETTE,
     load, save,
     add, remove, update, countWatch,
-    setChannelTags, setUi,
+    setChannelTags, setUi, setTagColor, toggleTab,
     youtubeLink, encodeShare, decodeShare, importList,
-    allTags, thumbnail,
+    allTags, thumbnail, colorFor,
     YT_LIMIT,
   };
 })();
