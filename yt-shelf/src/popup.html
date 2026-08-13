@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <p class="summary"><strong id="count">0</strong>개 저장됨 · 태그 <strong id="tags">0</strong>개</p>
+
+    <section>
+      <h2>공유 받기</h2>
+      <input type="text" id="code" placeholder="받은 공유 코드 붙여넣기" />
+      <button class="primary" id="import" type="button">선반에 넣기</button>
+    </section>
+
+    <section>
+      <h2>백업</h2>
+      <div class="row">
+        <button class="ghost" id="export" type="button">파일로 내보내기</button>
+        <button class="ghost" id="pick" type="button">파일에서 가져오기</button>
+      </div>
+      <input type="file" id="file" accept="application/json,.json" hidden />
+    </section>
+
+    <p id="status" class="status" hidden></p>
+
+    <p class="hint">선반은 유튜브 화면 오른쪽 손잡이를 눌러 열 수 있습니다.</p>
+
+    <script src="store.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
